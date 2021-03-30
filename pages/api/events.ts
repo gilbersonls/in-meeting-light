@@ -1,9 +1,15 @@
-import axios from "axios";
+import { isWithinInterval, parseJSON } from "date-fns";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { parseICS } from "node-ical";
+import { fromURL } from "node-ical";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { data } = await axios.get("");
+export default async (_: NextApiRequest, res: NextApiResponse) => {
+  const data = await fromURL(process.env.ICS_REMOTE_URL);
 
-  res.status(200).send(Object.values(parseICS(data)));
+  const events = Object.values(data).filter((event) => {
+    const start = parseJSON(JSON.stringify(event.start));
+    const end = parseJSON(JSON.stringify(event.end));
+    return isWithinInterval(new Date(), { start, end });
+  });
+
+  res.status(200).send(JSON.stringify(events));
 };
