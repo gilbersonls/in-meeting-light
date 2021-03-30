@@ -1,0 +1,19 @@
+{
+  "name": "in-meeting-light",
+  "version": "1.0.0",
+  "repository": "git@github.com-gilbersonls:gilbersonls/in-meeting-light.git",
+  "author": "Gilberson Silva <gilbersonls@gmailcom>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^7.6.0"
+  },
+  "scripts": {
+    "api": "yarn workspace @in-meeting-light/api"
+  }
+}
