@@ -14,7 +14,6 @@
     "@nestjs/cli": "^7.6.0"
   },
   "scripts": {
-    "api": "yarn workspace @in-meeting-light/api",
-    "heroku-postbuild": "yarn api build"
+    "api": "yarn workspace @in-meeting-light/api"
   }
 }
