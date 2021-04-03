@@ -3,7 +3,9 @@ on:
     branches:
       - main
     paths:
-      - "packages/api/**"
+      - packages/api/**/*
+      - docker/api.dockerfile
+      - .github/**/*
 
 jobs:
   heroku:
