@@ -23,4 +23,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           file: docker/api.dockerfile
-          tags: registry.heroku.com/in-meeting-light/web:latest
+          tags: registry.heroku.com/in-meeting-light/release:latest,
