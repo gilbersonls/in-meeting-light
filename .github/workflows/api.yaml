@@ -4,7 +4,7 @@ on:
       - main
     paths:
       - packages/api/**/*
-      - docker/api.dockerfile
+      - docker/Dockerfile.api
       - .github/**/*
 
 jobs:
@@ -12,15 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v1
+
       - name: login to heroku
-        uses: docker/login-action@v1
-        with:
-          registry: registry.heroku.com
-          username: ${{ secrets.HEROKU_USERNAME }}
-          password: ${{ secrets.HEROKU_PASSWORD }}
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login
 
       - name: build and push
-        uses: docker/build-push-action@v2
-        with:
-          file: docker/api.dockerfile
-          tags: registry.heroku.com/in-meeting-light/release:latest,
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:push -a in-meeting-light web
+
+      - name: release
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release -a in-meeting-light web
