@@ -5,8 +5,7 @@ ENV NODE_ENV build
 USER node
 WORKDIR /home/node
 
-COPY packages/api .
-COPY yarn.lock .
+COPY . .
 
 RUN yarn install --frozen-lockfile && yarn build
 

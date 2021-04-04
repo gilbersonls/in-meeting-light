@@ -1,6 +1,0 @@
-packages/api/node_modules
-packages/api/dist
-packages/api/.env
-packages/api/.eslintrc.js
-packages/api/.git*
-packages/api/.prettierrc
