@@ -158,8 +158,13 @@ const App = () => {
           <Button
             title="stop"
             onPress={() => {
-              whoosh.stop();
               BackgroundService.stop();
+            }}
+          />
+          <Button
+            title="stop music"
+            onPress={() => {
+              whoosh.stop();
             }}
           />
           <Section title="Step One">
