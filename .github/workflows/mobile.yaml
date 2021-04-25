@@ -35,12 +35,18 @@ jobs:
       - name: build android release
         run: cd android && ./gradlew assembleRelease
 
+      - name: list possible outputs directories
+        run: |
+          ls -la android/app/build/outputs
+          ls -la android/app/build/outputs/apk
+          ls -la android/app/build/outputs/apk/release
+
       - name: publish artifacts
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./android/app/build/outputs/apk/release/app-release.apk
+          asset_path: android/app/build/outputs/apk/release/app-release.apk
           asset_name: in-meeting-light.apk
           asset_content_type: application/vnd.android.package-archive
